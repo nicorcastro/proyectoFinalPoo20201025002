@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
     <link rel="stylesheet" href="{{url_for("static", filename="estilos.css")}}">
 </head>
 <body>
     <h3>Visor geográfico</h3>
     <div id="map"></div> 
-    <script src={{url_for("static", filename="programa.js")}}></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    <div class="text-center">
+            <a href="http://127.0.0.1:5000/nuevo" class="btn btn-primary">Crear nuevo punto de interés</a>
+    </div>    
     <div class="container">
         <table class="table">
         {% for puntoInteres in puntosInteres %}
@@ -30,6 +32,7 @@
         {% endfor %}
         </table>
     </div>
+    <script src={{url_for("static", filename="programa.js")}}></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
