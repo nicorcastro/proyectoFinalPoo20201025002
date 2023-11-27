@@ -11,9 +11,6 @@ class puntoInteres(db.Model):
     numeroObrasVenta=db.Column(db.Integer)
     horario=db.Column(db.String(80))
     fotografíaFachada=db.Column(db.String(80))
-    #relacion con la tabla usuario
-    usuario_id=db.Column(db.Integer, db.ForeignKey('usuario.id'))
-    usuario=db.relationship('usuarioModel')
 
     def __init__(self, nombre, latitud, longitud, nomenclatura, numeroObrasVenta, horario, fotografíaFachada, usuario_id):
         self.nombre=nombre
@@ -23,33 +20,3 @@ class puntoInteres(db.Model):
         self.numeroObrasVenta=numeroObrasVenta
         self.horario=horario
         self.fotografíaFachada=fotografíaFachada
-        self.usuario_id=usuario_id
-
-    def json(self):
-        return {
-            'id':self.id,
-            'nombre':self.nombre,
-            'latitud':self.latitud,
-            'longitud':self.longitud,
-            'nomenclatura':self.nomenclatura,
-            'numeroObrasVenta':self.numeroObrasVenta,
-            'horario':self.horario,
-            'fotografíaFachada':self.fotografíaFachada,
-            'usuario_id':self.usuario_id
-        }
-
-    @classmethod
-    def find_by_id(cls, id):
-        return cls.query.filter_by(id=id).first() #SELECT * FROM puntoInteres WHERE id=id LIMIT 1
-
-    @classmethod
-    def find_by_nombre(cls, nombre):
-        return cls.query.filter_by(nombre=nombre).first() #SELECT * FROM puntoInteres WHERE nombre=nombre LIMIT 1
-
-    @classmethod
-    def find_by_nomenclatura(cls, nomenclatura):
-        return cls.query.filter_by(nomenclatura=nomenclatura).first() #SELECT * FROM puntoInteres WHERE nomenclatura=nomenclatura LIMIT 1
-
-    @classmethod
-    def find_by_usuario_id(cls, usuario_id):
-        return cls.query.filter_by(usuario_id=usuario_id).all()
