@@ -7,13 +7,12 @@ class Programa:
     def __init__(self):
          
          self.app=Flask(__name__)
-         self.app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
          self.app.config['SQLALCHEMY_DATABASE_URI']="sqlite:///puntosinteres.sqlite3"
          
          #Agregar la db a nuestra aplicación
          db.init_app(self.app)
          
-         self.app.add_url_rule('/', view_func=self.mostrarMapa)
+         self.app.add_url_rule('/', view_func=self.visorGeografico)
          self.app.add_url_rule('/nuevo', view_func=self.agregar, methods=["GET", "POST"])
          
          #Iniciar el servidor
@@ -22,10 +21,9 @@ class Programa:
          self.app.run(debug=True)
          
          
-    def mostrarMapa(self):
-        return "MAPA"
-        
-         
+    def visorGeografico(self):
+        return render_template('visorGeografico.html', puntosInteres=puntoInteres.query.all())
+    
     
     def agregar(self):
         #Verificar si debe enviar el formulario o procesar los datos
@@ -50,7 +48,7 @@ class Programa:
             db.session.add(miPuntoInteres)
             db.session.commit()
           
-            return redirect(url_for('mostrarMapa'))
+            return redirect(url_for('visorGeografico'))
             
             
             
