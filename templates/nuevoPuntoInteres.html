@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo punto de interés</title>
+    <title>Nuevo punto de interés 📌</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 10px;
+            font-family: Courier;
+        }
+        #formulario {
+            width: 95%;
+            margin-top: 80px;
+        }
+    </style>    
 </head>
 <body>
 <center>
-    <h3>Crear nuevo punto de interés</h3>
-
-<div class="container">
+<div id="formulario" class="container">
+    <h2><b>Crear nuevo punto de interés 📌</b></h2>
     <form action="{{request.path}}" method="POST" enctype="multipart/form-data">
     
         <input type="text" name="nombre" placeholder="Nombre" required class="form-control" style="margin-bottom: 10px;">
@@ -20,9 +31,9 @@
         <input type="text" name="numeroObrasVenta" placeholder="Número de obras en venta" required class="form-control" style="margin-bottom: 10px;">
         <input type="text" name="horario" placeholder="Horario" required class="form-control" style="margin-bottom: 10px;">
         <input type="text" name="telefono" placeholder="Telefono" required class="form-control" style="margin-bottom: 10px;">
-        <label for="fotografiaFachada">Fotografía de la fachada:</label>
+        <h4><b><label for="fotografiaFachada">Fotografía de la fachada 📷:</label></b></h4>
         <input type="file" name="fotografiaFachada" accept="image/*" required class="form-control" style="margin-bottom: 10px;">
-        <input type="submit" value="Crear punto de interés" class="btn btn-primary">
+        <br><input type="submit" value="Crear punto de interés" class="btn btn-outline-light">
        
     </form>
 </div>
