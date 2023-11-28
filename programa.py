@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from db import db
 from puntoInteres import puntoInteres
+from werkzeug.utils import secure_filename
+import os
 
 class Programa:
      
@@ -8,12 +10,13 @@ class Programa:
          
          self.app=Flask(__name__)
          self.app.config['SQLALCHEMY_DATABASE_URI']="sqlite:///puntosinteres.sqlite3"
+         self.app.config['UPLOAD_FOLDER'] = 'static'
          
          #Agregar la db a nuestra aplicación
          db.init_app(self.app)
          
          self.app.add_url_rule('/', view_func=self.visorGeografico)
-         self.app.add_url_rule('/nuevo', view_func=self.agregar, methods=["GET", "POST"])
+         self.app.add_url_rule('/nuevoPuntoInteres', view_func=self.agregar, methods=["GET", "POST"])
          
          #Iniciar el servidor
          with self.app.app_context():
@@ -35,14 +38,24 @@ class Programa:
             nomenclatura=request.form["nomenclatura"]
             numeroObrasVenta=request.form["numeroObrasVenta"]
             horario=request.form["horario"] 
-            #Procesar la imagen
-            fotografiaFachada = None
-            if 'fotografiaFachada' in request.files:
-                imagen = request.files['fotografiaFachada']
-                fotografiaFachada = imagen.read()
-               
+
+            # Obtener el archivo y el nombre del archivo
+            fotografia_fachada = request.files['fotografiaFachada']
+            nombreArchivo = secure_filename(fotografia_fachada.filename)
+            
+            # Guardar el archivo en el sistema de archivos (puedes ajustar la ruta según tus necesidades)
+            rutaArchivo = os.path.join(self.app.config['UPLOAD_FOLDER'], nombreArchivo)
+            fotografia_fachada.save(rutaArchivo)
+            
             #Crear un objeto de de la clase puntoInteres
-            miPuntoInteres=puntoInteres(nombre, latitud, longitud, nomenclatura, numeroObrasVenta, horario, fotografiaFachada)
+            miPuntoInteres=puntoInteres(
+                nombre=nombre, 
+                latitud=latitud, 
+                longitud=longitud, 
+                nomenclatura=nomenclatura, 
+                numeroObrasVenta=numeroObrasVenta, 
+                horario=horario, 
+                fotografiaFachada=nombreArchivo)
             
             #Guardar el objeto en la base de datos
             db.session.add(miPuntoInteres)
@@ -55,6 +68,4 @@ class Programa:
             
         return render_template('nuevoPuntoInteres.html')
 
-
-
-miPrograma=Programa()
+miPrograma = Programa()

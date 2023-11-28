@@ -10,7 +10,7 @@ class puntoInteres(db.Model):
     nomenclatura=db.Column(db.String(80))
     numeroObrasVenta=db.Column(db.Integer)
     horario=db.Column(db.String(80))
-    fotografiaFachada=db.Column(db.LargeBinary)
+    fotografiaFachada=db.Column(db.String(80))
 
     def __init__(self, nombre, latitud, longitud, nomenclatura, numeroObrasVenta, horario, fotografiaFachada):
         self.nombre=nombre
