@@ -37,7 +37,8 @@ class Programa:
             longitud=request.form["longitud"]
             nomenclatura=request.form["nomenclatura"]
             numeroObrasVenta=request.form["numeroObrasVenta"]
-            horario=request.form["horario"] 
+            horario=request.form["horario"]
+            telefono=request.form["telefono"]    
 
             # Obtener el archivo y el nombre del archivo
             fotografia_fachada = request.files['fotografiaFachada']
@@ -54,7 +55,8 @@ class Programa:
                 longitud=longitud, 
                 nomenclatura=nomenclatura, 
                 numeroObrasVenta=numeroObrasVenta, 
-                horario=horario, 
+                horario=horario,
+                telefono=telefono, 
                 fotografiaFachada=nombreArchivo)
             
             #Guardar el objeto en la base de datos
