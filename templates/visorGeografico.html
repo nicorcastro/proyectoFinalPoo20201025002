@@ -47,8 +47,6 @@
 	const map = L.map('map').setView([4.6420528840546265, -74.07352672444107], 16);
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 18,
-		minZoom: 16,
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
@@ -59,7 +57,7 @@
 
 </script>
 <div>
-	<a href="http://127.0.0.1:5000/nuevoPuntoInteres" class="btn btn-primary">Crear nuevo punto de interés</a>
+	<a href="http://127.0.0.1:5000/nuevoPuntoInteres" class="btn btn-outline-light">Crear nuevo punto de interés</a>
 </div> 
 </center>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
