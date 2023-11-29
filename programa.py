@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for
 from db import db
 from puntoInteres import puntoInteres
 from werkzeug.utils import secure_filename
@@ -64,10 +64,7 @@ class Programa:
             db.session.commit()
           
             return redirect(url_for('visorGeografico'))
-            
-            
-            
-            
+
         return render_template('nuevoPuntoInteres.html')
 
 miPrograma = Programa()
