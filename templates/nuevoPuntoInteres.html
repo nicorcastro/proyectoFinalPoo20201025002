@@ -5,7 +5,7 @@
     Se utiliza Bootstrap para estilizar la página y se incluyen los scripts necesarios para su funcionamiento.
 -->
 <!DOCTYPE html>
-<html lang="sp">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,8 +31,8 @@
     <form action="{{request.path}}" method="POST" enctype="multipart/form-data">
     
         <input type="text" name="nombre" placeholder="Nombre" required class="form-control" style="margin-bottom: 10px;">
-        <input type="text" name="latitud" placeholder="Latitud" required class="form-control" style="margin-bottom: 10px;">
-        <input type="text" name="longitud" placeholder="Longitud" required class="form-control" style="margin-bottom: 10px;">
+        <input type="number" name="latitud" placeholder="Latitud" required class="form-control" style="margin-bottom: 10px;">
+        <input type="number" name="longitud" placeholder="Longitud" required class="form-control" style="margin-bottom: 10px;">
         <input type="text" name="nomenclatura" placeholder="Nomenclatura" required class="form-control" style="margin-bottom: 10px;">
         <input type="text" name="numeroObrasVenta" placeholder="Número de obras en venta" required class="form-control" style="margin-bottom: 10px;">
         <input type="text" name="horario" placeholder="Horario" required class="form-control" style="margin-bottom: 10px;">
@@ -43,7 +43,6 @@
        
     </form>
 </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </center>
 </body>

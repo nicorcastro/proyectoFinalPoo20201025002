@@ -23,12 +23,12 @@ class puntoInteres(db.Model):
     fotografiaFachada = db.Column(db.String(80))
 
 #Constructor de la clase puntoInteres.
-def __init__(self, nombre, latitud, longitud, nomenclatura, numeroObrasVenta, horario, telefono, fotografiaFachada):
-    self.nombre = nombre
-    self.latitud = latitud
-    self.longitud = longitud
-    self.nomenclatura = nomenclatura
-    self.numeroObrasVenta = numeroObrasVenta
-    self.horario = horario
-    self.telefono = telefono
-    self.fotografiaFachada = fotografiaFachada
+    def __init__(self, nombre, latitud, longitud, nomenclatura, numeroObrasVenta, horario, telefono, fotografiaFachada):
+        self.nombre = nombre
+        self.latitud = latitud
+        self.longitud = longitud
+        self.nomenclatura = nomenclatura
+        self.numeroObrasVenta = numeroObrasVenta
+        self.horario = horario
+        self.telefono = telefono
+        self.fotografiaFachada = fotografiaFachada
