@@ -1,5 +1,13 @@
+<!-- 
+	Plantilla HTML para el visor geográfico.
+	Muestra un mapa interactivo con marcadores de puntos de interés.
+	Los puntos de interés se obtienen a través de un bucle for.
+	Cada marcador muestra información detallada del punto de interés.
+	Permite crear nuevos puntos de interés mediante un enlace.
+-->
+
 <!DOCTYPE html>
-<html lang="sp">
+<html lang="español">
 <head>
 	<base target="_top">
 	<meta charset="utf-8">
@@ -9,20 +17,28 @@
 	
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+	<!-- FILEPATH: /compartida/POO/proyectoFinalPoo20201025002/templates/visorGeografico.html -->
+	<!-- 
+		Este bloque de código contiene los estilos CSS para la plantilla visorGeografico.html.
+		Establece el color de fondo, el color del texto, el margen y la familia de fuentes para el elemento body.
+		También define el relleno y el margen para el elemento header-box.
+		El elemento map tiene un ancho del 100%, una altura de 500px y un margen inferior de 15px.
+	-->
 	<style>
 		body {
-            background-color: #000;
-            color: #fff;
-            margin: 10px;
-            font-family: Courier; 
-        }
-        #header-box {
-            padding: 15px;
-            margin-bottom: 0px;
-        }
+			background-color: #000;
+			color: #fff;
+			margin: 10px;
+			font-family: Courier; 
+		}
+		#header-box {
+			padding: 15px;
+			margin-bottom: 0px;
+		}
+	
 		#map {
 			width: 100%; 
 			height: 500px;
@@ -45,12 +61,15 @@
 
 <script>
 
+	// Crear el mapa y establecer la vista inicial
 	const map = L.map('map').setView([4.6420528840546265, -74.07352672444107], 16);
 
+	// Agregar capa de azulejos de OpenStreetMap al mapa
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
+	// Agregar marcadores de puntos de interés al mapa
 	{% for puntoInteres in puntosInteres %}
 		var marker = L.marker([{{puntoInteres.latitud}}, {{puntoInteres.longitud}}]).addTo(map) 
 			.bindPopup('<center><img src="../static/{{puntoInteres.fotografiaFachada}}" style="height:180px"></center><div style="font-size: 16px; width: 310px; height:20px;text-align: center;line-height: 15px;"><b><br>{{puntoInteres.nombre}}</b></div><br>Dirección: {{puntoInteres.nomenclatura}}<br>Latitud: {{puntoInteres.latitud}}<br>Longitud: {{puntoInteres.longitud}}<br>Horario: {{puntoInteres.horario}}<br>Telefono: {{puntoInteres.telefono}}<br>Numero de obras a la venta: {{puntoInteres.numeroObrasVenta}}');
